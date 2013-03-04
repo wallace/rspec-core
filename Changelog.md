@@ -8,6 +8,9 @@ Bug fixes
 * Fix regression in 2.13.0 that caused confusing behavior when overridng
   a named subject with an unnamed subject in an inner group and then
   referencing the outer group subject's name (Myron Marston).
+* Fix named subjects so that if an inner group defines a method that
+  overrides the named method, `subject` still retains the originally
+  declared value (Myron Marston).
 
 ### 2.13.0 / 2013-02-23
 [full changelog](http://github.com/rspec/rspec-core/compare/v2.12.2...v2.13.0)
