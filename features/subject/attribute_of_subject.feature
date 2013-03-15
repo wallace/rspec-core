@@ -103,6 +103,23 @@ Feature: attribute of subject
     When I run `rspec example_spec.rb`
     Then the examples should all pass
 
+  Scenario: specify an implicit subject in an its block
+    Given a file named "example_spec.rb" with:
+      """ruby
+      describe Hash do
+      context "with nested hashes with keys :one, 'two', and :three" do
+          subject do
+            {:one => 1, "two" => { :three => 3 }, :three => 4 }
+          end
+
+          its([:one]) { should eq(1) }
+          its(["two"]) { subject[:three].should eq(3) }
+        end
+      end
+      """
+    When I run `rspec example_spec.rb`
+    Then the examples should all pass
+
   Scenario: specify value for key in a hash-like object
     Given a file named "example_spec.rb" with:
       """ruby
